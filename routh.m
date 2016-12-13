@@ -56,15 +56,13 @@ for i=3:(p+1)
 end
 disp('Routh Table :');
 pretty(simplify(s));
+
 aflg=0;
 flg=0;
 % check for sign changes and stability considerations
+z=sign(double(s));
 for i=1:p+1
-    x=abs(s(i,1));
-    a=limit(x,e,0);
-    y=s(i,1);
-    b=limit(y,e,0);    
-    if a~=b
+    if z(i,1) < 0
         if aflg==0
             aflg=1;
             flg=flg+1;
@@ -75,6 +73,7 @@ for i=1:p+1
             flg=flg+1;
         end
     end
+    disp(flg)
 end
 % comments on the table
 if flg>0
